@@ -1,0 +1,42 @@
+<h1 id="introduction">Introduction</h1>
+
+<p>Today, we’ll be working through some more complex examples that use Python for data analysis and transformation, and vega-lite as the output engine to save to our Jekyll pages.</p>
+
+<h1 id="1-data-transformations-with-the-buildings-dataset">1. Data transformations with the buildings dataset</h1>
+
+<p>We start the notebook with a few data manipulations to end up with a figure that shows the max and min square footage as a function of year aquired:</p>
+
+<vegachart schema-url="/assets/json/buildings_sqft.json" style="width: 100%"></vegachart>
+
+<h3 id="optional-things-maybe--we-might-get-to-it">Optional things? Maybe?  We might get to it?</h3>
+
+<vegachart schema-url="/assets/json/buildings_sqft_stats.json" style="width: 100%"></vegachart>
+
+<h1 id="2-more-complex-data-transforms-and-mappable-data-with-the-corgis-dataset">2. More complex Data Transforms (and mappable data) with the Corgi’s dataset</h1>
+
+<p>We went through the steps to make a world map with responsive dot sizes for the number of corgis born as a function of year:</p>
+
+<vegachart schema-url="/assets/json/corgis_dotchart_world.json" style="width: 100%"></vegachart>
+
+<p>We note that there are some artifacts, but we can fix this with some interpolation:</p>
+
+<vegachart schema-url="/assets/json/corgis_dotchart_world_smooth.json" style="width: 100%"></vegachart>
+
+<p>Note that without context, this chart is meaningless – we have to be sure to add in context in words (and/or with other plots) about what this map is showing.</p>
+
+<p>Finally, let’s make a choropleth plot with the corgi data:</p>
+
+<vegachart schema-url="/assets/json/corgis_choro_world.json" style="width: 100%"></vegachart>
+
+<div class="left">
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://github.com/UIUC-iSchool-DataViz/is445_bcubcg_fall2022/blob/main/data/mobility.csv">
+  The Data
+</a>
+</div>
+
+<div class="right">
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://github.com/UIUC-iSchool-DataViz/is445_bcubcg_fall2022/blob/main/week11/prep_notebook_week11.ipynb">
+  The Analysis
+</a>
+</div>
+

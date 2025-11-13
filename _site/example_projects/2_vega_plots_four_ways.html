@@ -1,0 +1,88 @@
+<h1 id="1-from-the-vega-editor">1. From the vega-editor</h1>
+
+<p>If we start from <a href="https://vega.github.io/vega-lite/examples/stacked_bar_h.html">this simple vega-example</a> and <a href="https://vega.github.io/editor/#/examples/vega-lite/stacked_bar_h">open it in the vega-editor</a> we can export from the vega-lite editor.</p>
+
+<p>If we click the <code class="language-plaintext highlighter-rouge">Export</code> button in the upper tool bar, we see that we have a few options for how to export visualiztions.</p>
+
+<p><img src="/assets/pngs/vegaeditorexample.png" alt="" /></p>
+
+<p>For this to work, you need to make sure that you have the full <em>raw</em> URL for the dataset from the <a href="https://github.com/vega/vega-datasets/tree/master/data">list of vega-datasets</a>.  Double check that it is the raw-data link!</p>
+
+<p>Note here to display this image I had to include a Liquid link for the <code class="language-plaintext highlighter-rouge">site.baseurl</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![](/assets/pngs/vegaeditorexample.png)
+</code></pre></div></div>
+
+<p>We can save with JSON (config file un-checked) using the middle upper panel’s interface:</p>
+
+<p><img src="/assets/pngs/fullvegaeditorsavejson.png" alt="" /></p>
+
+<p>We can then save the downloaded .json file in the <code class="language-plaintext highlighter-rouge">assets/jsons/</code> folder in our main Jekyll page directory.</p>
+
+<p>Once we have that we can link using <code class="language-plaintext highlighter-rouge">vegachart</code> as per usual:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;vegachart schema-url="/assets/json/direct_from_editor.json" style="width: 100%"&gt;&lt;/vegachart&gt;
+</code></pre></div></div>
+
+<vegachart schema-url="/assets/json/direct_from_editor.json" style="width: 100%"></vegachart>
+
+<h1 id="2-from-vega-specs-to-json-with-altair-in-python">2. From Vega-Specs to JSON with Altair in Python</h1>
+
+<p>We start from just copying the specification from our <a href="https://starboard.gg/jnaiman/inClass_week10_spring2023-nJGY2kn">Starboard notebook</a> of previous weeks using the <code class="language-plaintext highlighter-rouge">from_dict</code> function in Altair.  With some judicious use of adding/subtracting quotation marks (we have to be a bit more careful with these in Python) we can recreate a simple histogram showing the count of records in our <a href="https://raw.githubusercontent.com/UIUC-iSchool-DataViz/is445_data/main/mobility.csv">Mobility dataset</a> as a function of state:</p>
+
+<vegachart schema-url="/assets/json/chart1.json" style="width: 100%"></vegachart>
+
+<p>We did this by saving our Altair chart as a JSON file in our assets folder in this Jekyll page’s repository and embedding it using the <code class="language-plaintext highlighter-rouge">vegachart</code> plug in HTML tag:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;vegachart schema-url="/assets/json/chart1.json" style="width: 100%"&gt;&lt;/vegachart&gt;
+</code></pre></div></div>
+
+<h1 id="3-dashboard-building">3. Dashboard Building</h1>
+
+<p>For more complex layouts and to support some interactivity and linking of data, we can start to making some of our plots more “Altair friendly”.  For example, breaking our two dashboard plots from our prior <a href="https://starboard.gg/nb/n9nb6N8">Starboard notebook</a> into to charts and then using the <code class="language-plaintext highlighter-rouge">Hconcat</code> function in Altair to put them side-by-side:</p>
+
+<vegachart schema-url="/assets/json/static_mobility.json" style="width: 100%"></vegachart>
+
+<p>Note that we had to save w/o the container width here (so changing the width parameter does nothing).</p>
+
+<!-- If I want to have some control over the size, I can put this `vegachart` tag within an HTML `div` tag:
+
+<div width="100px">
+<vegachart schema-url="/assets/json/static_mobility.json" style="width:600px"></vegachart>
+</div>
+-->
+
+<p>Now with interactivity:</p>
+<vegachart schema-url="/assets/json/dashboard_mobility.json" style="width: 100%"></vegachart>
+
+<p>Neat!  But still, there are some weird things with this side-by-side concatination thing.</p>
+
+<p>Let’s re-make this plot once again, only using Altair syntax (not translating from vega-lite with <code class="language-plaintext highlighter-rouge">from_dict</code>).</p>
+
+<h1 id="4-use-altair-to-make-the-chart">4. Use Altair to make the chart</h1>
+
+<p>We first started making a scatter plot with Altair:</p>
+<vegachart schema-url="/assets/json/population_scatter.json" style="width:600px"></vegachart>
+
+<p>And then we re-did the Mobility Dashboard, but this time using all Altair-style calls:</p>
+<vegachart schema-url="/assets/json/altair_mobility_dashboard.json" style="width: 100%"></vegachart>
+
+<h1 id="5-python-analysis--altair-plotting">5. Python Analysis + Altair Plotting</h1>
+
+<p>Finally, we can do all of the data transformations and analysis in Python and then use Altair to export the cleaned/transformed data.</p>
+
+<vegachart schema-url="/assets/json/altair_mobility_data_dashboard.json" style="width: 100%"></vegachart>
+
+<p>This essentially looks the same as what we have above in section #4!  That is because it is basically the same thing, however, now the data is stored <em>with</em> the file.  This allows us to potentially do some data manipulations in Python and then save the vega-lite plot with Altair for plotting.</p>
+
+<div class="left">
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://github.com/UIUC-iSchool-DataViz/is445_bcubcg_fall2022/blob/main/data/mobility.csv">
+  The Data
+</a>
+</div>
+
+<div class="right">
+<a class="m-1 btn btn-outline-primary btn-2 " href="https://github.com/UIUC-iSchool-DataViz/is445_bcubcg_fall2022/blob/main/week11/prep_notebook_week11.ipynb">
+  The Analysis
+</a>
+</div>
+
