@@ -124,3 +124,12 @@ exclude:
   - "*.ipynb"
   - "python_notebooks/*"
   - vendor
+
+
+collections:
+  example_projects:
+    output: true
+  python_notebooks:
+    output: true
+  projects:
+    output: true

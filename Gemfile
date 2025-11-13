@@ -38,3 +38,4 @@ gem "rexml", ">= 3.3.2"
 # updates 2025 -- newer jekyll versions
 gem "csv"
 gem "base64"
+gem "wdm", "~> 0.2.0"
