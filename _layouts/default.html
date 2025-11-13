@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <!--
   portfolYOU Jekyll theme by Youssef Raafat
@@ -23,6 +23,13 @@
   {% include analytics.html %}
   {% include scripts.html %}
 
+  <!-- Load Vega/Vega-Lite scripts if page has custom_js -->
+  {%- if page.custom_js -%}
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  {%- endif -%}
+
   {%- if site.buymeacoffee.enabled == true -%}
     <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="{{ site.buymeacoffee.username }}" data-description="{{ site.buymeacoffee.description }}" data-message="{{ site.buymeacoffee.message }}" data-color="{{ site.buymeacoffee.color }}" data-position="Right" data-x_margin="16" data-y_margin="16"></script>
   {%- endif -%}
@@ -33,17 +40,3 @@ end of checks! JPN
 -->
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
